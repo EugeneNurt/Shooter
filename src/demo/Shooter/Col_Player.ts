@@ -14,7 +14,7 @@ export default class Col_Player {
         this.col_player.y = window.app.screen.height - 500;
         this.col_player.width = 250;
         this.col_player.height = 400;
-        //window.app.stage.addChild(this.col_player);
+        window.app.stage.addChild(this.col_player);
 
         this.tween = new Tween();
 
@@ -24,11 +24,13 @@ export default class Col_Player {
 
         this.down_end = () => {
             this.jump = false;
+            this.col_player.height = 400;
             this.tween.destroy();
         }
     }
 
     Jump() {
+        this.col_player.height = 300;
         this.jump = true;
         this.tween.addControl(this.col_player);
         this.tween.do({y:[this.col_player.y, this.col_player.y - 400]}).start(1000, this.down.bind(this), 1);
